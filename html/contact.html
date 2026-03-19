@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEI Network - Application Form</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+<body>
+    <!-- Cosmic Background -->
+    <div class="cosmic-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><span class="logo-text">MEI</span><span class="logo-network">.Network</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#launch">Launch Your SaaS</a></li>
+                <li><a href="index.html#incubation">Incubation</a></li>
+                <li><a href="index.html#ecosystem">Ecosystem</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+            </ul>
+            <button class="login-btn">Login</button>
+        </div>
+    </nav>
+
+    <!-- Header Title Section -->
+    <section class="contact-header">
+        <div class="container">
+            <h1 class="contact-title">
+                Build With Us — <span class="application-highlight">Application</span>
+            </h1>
+            <div class="title-divider"></div>
+        </div>
+    </section>
+
+    <!-- Main Application Form -->
+    <section class="application-form">
+        <div class="container">
+            <div class="form-container">
+                
+                <!-- Personal Details Section -->
+                <div class="form-section">
+                    <h2 class="section-heading">Personal Details</h2>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <div class="input-icon">👤</div>
+                            <input type="text" id="fullName" placeholder="Full Name" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-container">
+                            <div class="input-icon">🏳️</div>
+                            <input type="email" id="email" placeholder=" Email Address" class="form-input" required>
+                            <button type="button" class="send-btn" onclick="showCaptchaModal()">Send</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-container">
+                            <div class="input-icon">📧</div>
+                            <input type="email" id="confirmEmail" placeholder="Confirm Email Address" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-container">
+                            <div class="input-icon">🏢</div>
+                            <input type="text" id="company" placeholder="Current Company / Startup Name" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Upload Section -->
+                <div class="form-section">
+                    <div class="section-heading-container">
+                        <h2 class="section-heading">Attach Your SaaS Concept / Requirements Document</h2>
+                        <div class="info-icon-container">
+                            <span class="info-icon" id="requirementsInfoIcon"></span>
+                            <div class="info-tooltip" id="requirementsTooltip">
+                                <div class="tooltip-content">
+                                    <h3 class="tooltip-title">Your document should ideally include:</h3>
+                                    <ul class="tooltip-list">
+                                        <li>Problem your SaaS solves</li>
+                                        <li>Target users / customers</li>
+                                        <li>Core features required at launch</li>
+                                        <li>Business model or monetization idea</li>
+                                        <li>Any UI sketches or workflow diagrams</li>
+                                        <li>Expected launch timeline</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-section-expanded">
+                        <div class="upload-container-expanded">
+                            <div class="upload-box-expanded" id="uploadBox">
+                                <div class="upload-content" id="uploadContent">
+                                    <div class="upload-icon">📁</div>
+                                    <p class="upload-text">Drag & drop files or</p>
+                                    <button type="button" class="browse-btn">Browse Files</button>
+                                    <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg" multiple style="display: none;">
+                                </div>
+                                <div class="uploaded-files-list" id="uploadedFilesList" style="display: none;">
+                                    <!-- Uploaded files will appear here -->
+                                </div>
+                                <div class="upload-actions" id="uploadActions" style="display: none;">
+                                    <button type="button" class="add-more-btn" onclick="addMoreFiles()">
+                                        <span class="add-icon">+</span> Add More Files
+                                    </button>
+                                    <button type="button" class="cancel-upload-btn" onclick="cancelAllFiles()">
+                                        Cancel All
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="file-formats">Supported: PDF, DOC, PPT, PPTX, PNG, JPG</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="form-section submit-section">
+                    <h2 class="section-heading">Submit Application</h2>
+                    <p class="submit-subtitle">Our team reviews submissions and responds within 48 hours.</p>
+                    
+                    <button type="submit" class="submit-btn" onclick="submitApplication()">
+                        Submit Application
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Captcha Modal -->
+    <div id="captchaModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Verify Email</h3>
+                <button type="button" class="modal-close" onclick="closeCaptchaModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please complete the verification to send email confirmation:</p>
+                
+                <!-- Simple Captcha -->
+                <div class="captcha-container">
+                    <div class="captcha-question" id="captchaQuestion">5 + 3 = ?</div>
+                    <input type="text" id="captchaInput" placeholder="Enter answer" class="captcha-input">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-btn-cancel" onclick="closeCaptchaModal()">Cancel</button>
+                <button type="button" class="modal-btn-verify" onclick="verifyCaptcha()">Verify & Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Basic JavaScript for Modal and File Upload -->
+    <script>
+        // Captcha Modal Functions
+        function showCaptchaModal() {
+            document.getElementById('captchaModal').style.display = 'flex';
+            generateCaptcha();
+        }
+
+        function closeCaptchaModal() {
+            document.getElementById('captchaModal').style.display = 'none';
+            document.getElementById('captchaInput').value = '';
+        }
+
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const answer = num1 + num2;
+            
+            document.getElementById('captchaQuestion').textContent = `${num1} + ${num2} = ?`;
+            document.getElementById('captchaQuestion').dataset.answer = answer;
+        }
+
+        function verifyCaptcha() {
+            const userAnswer = parseInt(document.getElementById('captchaInput').value);
+            const correctAnswer = parseInt(document.getElementById('captchaQuestion').dataset.answer);
+            
+            if (userAnswer === correctAnswer) {
+                alert('Email verification sent successfully!');
+                closeCaptchaModal();
+                // Here you would typically trigger the actual email sending process
+            } else {
+                alert('Incorrect answer. Please try again.');
+                generateCaptcha();
+                document.getElementById('captchaInput').value = '';
+            }
+        }
+
+        // Enhanced File Upload Functions
+        let uploadedFiles = [];
+
+        const uploadBox = document.getElementById('uploadBox');
+        const fileInput = document.getElementById('fileInput');
+        const uploadContent = document.getElementById('uploadContent');
+        const uploadedFilesList = document.getElementById('uploadedFilesList');
+        const uploadActions = document.getElementById('uploadActions');
+
+        // Info icon tooltip functionality
+        document.getElementById('requirementsInfoIcon').addEventListener('mouseenter', () => {
+            document.getElementById('requirementsTooltip').style.display = 'block';
+        });
+
+        document.getElementById('requirementsInfoIcon').addEventListener('mouseleave', () => {
+            document.getElementById('requirementsTooltip').style.display = 'none';
+        });
+
+        document.querySelector('.browse-btn').addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.classList.add('dragover');
+        });
+
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.classList.remove('dragover');
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = e.target.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            for (let i = 0; i < files.length; i++) {
+                uploadedFiles.push({
+                    file: files[i],
+                    id: Date.now() + i
+                });
+            }
+            updateFileDisplay();
+        }
+
+        function updateFileDisplay() {
+            if (uploadedFiles.length > 0) {
+                uploadContent.style.display = 'none';
+                uploadedFilesList.style.display = 'block';
+                uploadActions.style.display = 'flex';
+                
+                uploadedFilesList.innerHTML = uploadedFiles.map(fileObj => `
+                    <div class="file-item" data-file-id="${fileObj.id}">
+                        <span class="file-icon">📄</span>
+                        <span class="file-name">${fileObj.file.name}</span>
+                        <span class="file-size">(${(fileObj.file.size / 1024).toFixed(1)} KB)</span>
+                        <button type="button" class="remove-file-btn" onclick="removeFile(${fileObj.id})">✕</button>
+                    </div>
+                `).join('');
+            } else {
+                uploadContent.style.display = 'flex';
+                uploadedFilesList.style.display = 'none';
+                uploadActions.style.display = 'none';
+            }
+        }
+
+        function addMoreFiles() {
+            fileInput.click();
+        }
+
+        function removeFile(fileId) {
+            uploadedFiles = uploadedFiles.filter(fileObj => fileObj.id !== fileId);
+            updateFileDisplay();
+        }
+
+        function cancelAllFiles() {
+            uploadedFiles = [];
+            updateFileDisplay();
+        }
+
+        function submitApplication() {
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const confirmEmail = document.getElementById('confirmEmail').value;
+            
+            if (!fullName || !email || !confirmEmail) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (email !== confirmEmail) {
+                alert('Email addresses do not match.');
+                return;
+            }
+            
+            alert('Application submitted successfully! We will respond within 48 hours.');
+            // Here you would handle the actual form submission
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('captchaModal');
+            if (e.target === modal) {
+                closeCaptchaModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
