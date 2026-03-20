@@ -468,6 +468,71 @@ body {
   font-size: 0.95rem;
 }
 
+/* Tooltip Styles */
+.showcase-card[data-tooltip] {
+  position: relative;
+}
+
+.showcase-card[data-tooltip]:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: rgba(26, 26, 26, 0.95);
+  color: var(--text-light);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: var(--backdrop-blur);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 280px;
+  white-space: normal;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.showcase-card[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* Tooltip Arrow */
+.showcase-card[data-tooltip]:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid rgba(26, 26, 26, 0.95);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.showcase-card[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0px);
+}
+
+.card-subtitle a {
+  text-decoration: underline;
+  color: inherit;
+}
+
 /* Final CTA Section */
 .final-cta {
   padding: 100px 0;
@@ -479,7 +544,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin: 3rem 0;
+  margin: 1rem 0;
   flex-wrap: wrap;
 }
 
